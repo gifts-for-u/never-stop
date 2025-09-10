@@ -30,7 +30,7 @@
         z-index: 9999;
         font-size: 2rem;
         font-weight: bold;
-        color: #f092c7; /* sama warna dengan tombol */
+        color: #f092c7;
         opacity: 0;
         animation: fadeInOut 6s ease forwards;
       }
@@ -62,7 +62,7 @@
         display: flex;
         flex-direction: column;
         height: 100vh;
-        opacity: 0;
+        opacity: 0; /* default tersembunyi */
         transition: opacity 1s ease;
       }
 
@@ -194,7 +194,7 @@
   </head>
   <body>
     <!-- Opening Screen -->
-    <div class="opening">
+    <div class="opening" id="opening">
       <p class="opening-text">Halo Sayang❣️</p>
     </div>
 
@@ -251,6 +251,7 @@
       const progressEl = document.getElementById("progress");
       const btn = document.getElementById("btn");
       const mainContainer = document.getElementById("mainContainer");
+      const opening = document.getElementById("opening");
 
       // Buat cards sesuai jumlah messages
       messages.forEach((msg) => {
@@ -299,10 +300,11 @@
         }
       }
 
-      // Tampilkan main setelah opening selesai
+      // Transition: hide opening → show main
       setTimeout(() => {
-        mainContainer.style.opacity = "1";
-      }, 6000); // setelah 6 detik opening
+        opening.style.display = "none"; // ilangin opening
+        mainContainer.style.opacity = "1"; // munculin konten
+      }, 6000); // setelah animasi opening selesai (6 detik)
     </script>
   </body>
 </html>
